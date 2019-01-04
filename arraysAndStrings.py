@@ -140,12 +140,9 @@ def rotateMatrix(matrix):
     newMatrix = []
     for i in range(len(matrix)):
         newMatrix.append([])
-        # for j in range(len(matrix)):
-        #     newMatrix[i].append(0)
-    
+
     # append to new matrix
-    
-    # start from the last row, up the rows on one column
+    # start from the last row, up the rows on columns
     # add those items to first row
     for c in range(len(matrix)):
         for r in range(len(matrix)-1, -1, -1):
