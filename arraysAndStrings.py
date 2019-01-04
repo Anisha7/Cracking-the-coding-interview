@@ -147,7 +147,31 @@ def rotateMatrix(matrix):
     for c in range(len(matrix)):
         for r in range(len(matrix)-1, -1, -1):
             newMatrix[c].append(matrix[r][c])
+    del matrix
     return newMatrix
+
+# Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+# column are set to 0.
+def zeroMatrix(matrix):
+    zeroPositions = []
+    rows = len(matrix)
+    columns = len(matrix)
+    for r in range(len(matrix)):
+        for c in range(len(matrix[r])):
+            if (matrix[r][c] == 0):
+                zeroPositions.append((r,c))
+    for pos in range(len(zeroPositions)):
+        r = zeroPositions[pos][0]
+        c = zeroPositions[pos][1]
+        for i in range(rows):
+            if (i == r): 
+                for j in range(columns):
+                    matrix[i][j] = 0
+            else:
+                matrix[i][c] = 0
+    
+    del zeroPositions
+    return matrix
 
 if __name__ == '__main__':
     print("Testing isUnique...")
@@ -180,7 +204,7 @@ if __name__ == '__main__':
     assert(oneAway("pale", "bake") == False)
     print("Passed")
 
-    print("Testing compressString")
+    print("Testing compressString...")
     assert(compressString("aabcccccaaa") == "a2b1c5a3")
     assert(compressString("aabccccca") == "a2b1c5a1")
     assert(compressString("aa") == "a2")
@@ -188,8 +212,13 @@ if __name__ == '__main__':
     assert(compressString("abc") == "abc")
     print("Passed")
 
-    print("Testing rotateMatrix")
+    print("Testing rotateMatrix...")
     assert(rotateMatrix([[0,1,2],[3,4,5],[6,7,8]]) == [[6,3,0], [7,4,1], [8,5,2]])
+    print("Passed")
+
+    print("Testing zeroMatrix...")
+    assert(zeroMatrix([[0,1],[2,3]]) == [[0,0],[0,3]])
+    assert(zeroMatrix([[0,1, 2],[3,4,5],[6,0,8]]) == [[0,0,0],[0,0,5],[0,0,0]])
     print("Passed")
 
 
