@@ -36,6 +36,42 @@ def checkPermutation(s1, s2):
     # passed all tests, it is a permutation
     return True
 
+# Write a method to replace all spaces in a string with '%20'.
+def URLify(s,n):
+    newS = ""
+    for i in range(n):
+        if (s[i] == " "):
+            newS += "%20"
+        else:
+            newS += s[i]
+    return newS
+
+# make all combinations with string s and character c
+def makePermutations(s, c):
+    words = []
+    for i in range(len(s)):
+        word = s[:i] + c + s[i:]
+        words.append(word)
+    return words
+
+# check if s is the same when reversed
+def isPalindrome(s):
+    reversedS = ""
+    for i in range(len(s)):
+        reversedS += s[len(s) - i - 1]
+    return reversedS == s
+
+def palindromePermutation(s):
+    # make permutations of s
+    for i in range(len(s)):
+        new = s[:i] + s[i+1:]
+        print(new)
+        words = makePermutations(new,s[i])
+        for word in words:
+            if (checkPermutation(s, word) and isPalindrome(word)):
+                print(isPalindrome(word))
+                return True
+    return False
 
 if __name__ == '__main__':
     print("Testing isUnique...")
@@ -50,4 +86,14 @@ if __name__ == '__main__':
     assert(checkPermutation("boot", "toob") == True)
     assert(checkPermutation("taboo", "capoo") == False)
     assert(checkPermutation("cab", "bato") == False)
+    print("Passed")
+
+    print("Testing URLify")
+    assert(URLify("hey you are", 11) == "hey%20you%20are")
+    print("Passed")
+
+    print("Testing palindromePermutations")
+    print(palindromePermutation("toot"))
+    assert(palindromePermutation("toot") == True)
+    assert(palindromePermutation("act") == False)
     print("Passed")
