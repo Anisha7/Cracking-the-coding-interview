@@ -68,11 +68,9 @@ def palindromePermutation(s):
     # make permutations of s
     for i in range(len(s)):
         new = s[:i] + s[i+1:]
-        print(new)
         words = makePermutations(new,s[i])
         for word in words:
             if (checkPermutation(s, word) and isPalindrome(word)):
-                print(isPalindrome(word))
                 return True
     return False
 
@@ -83,7 +81,6 @@ def oneAway(s1, s2):
     word1 = "" # does not change
     word2 = "" # the one we need to alter
     count = 0
-    print(s1, s2)
 
     # initialize
     if s1 == s2:
@@ -98,8 +95,6 @@ def oneAway(s1, s2):
     j = 0
     while (i < len(word2) and j < len(word1)):
         # compare letters
-        print(word1[j], word2[i])
-        print(j, i)
         if word1[j] != word2[i]:
             count += 1
             if (len(s1) == len(s2)):
@@ -108,16 +103,38 @@ def oneAway(s1, s2):
             i += 1
         j += 1
         
-        print(count)
         if count > 1:
             return False
 
     # if not seen all of word1
     if (j < len(word1)):
         count += len(word2) - len(word1)
-    print(count)
     return count <= 1
     
+# Implement a method to perform basic string compression using the counts
+# of repeated characters. For example, the string aabcccccaaa would become a2blc5a3.
+def compressString(s):
+    if (len(s) == 0):
+        return s
+    count = 1
+    prev = s[0]
+    newS = s[0]
+    for i in range(1, len(s)):
+        if (s[i] == prev):
+            count += 1
+        else:
+            newS += str(count)
+            count = 1
+            newS += s[i]
+            prev = s[i]
+    newS += str(count)
+    
+    if (len(newS) > len(s)):
+        return s
+    return newS
+
+
+
 if __name__ == '__main__':
     print("Testing isUnique...")
     assert(isUnique("abcd") == True)
@@ -138,7 +155,6 @@ if __name__ == '__main__':
     print("Passed")
 
     print("Testing palindromePermutations...")
-    print(palindromePermutation("toot"))
     assert(palindromePermutation("toot") == True)
     assert(palindromePermutation("act") == False)
     print("Passed")
@@ -149,4 +165,14 @@ if __name__ == '__main__':
     assert(oneAway("pale", "bale") == True)
     assert(oneAway("pale", "bake") == False)
     print("Passed")
+
+    print("Testing compressString")
+    assert(compressString("aabcccccaaa") == "a2b1c5a3")
+    assert(compressString("aabccccca") == "a2b1c5a1")
+    assert(compressString("aa") == "a2")
+    assert(compressString("") == "")
+    assert(compressString("abc") == "abc")
+    print("Passed")
+
+
 
