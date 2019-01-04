@@ -61,6 +61,9 @@ def isPalindrome(s):
         reversedS += s[len(s) - i - 1]
     return reversedS == s
 
+# Given a string, write a function to check if it is a permutation of a palindrome.
+# A palindrome is a word or phrase that is the same forwards and backwards. A permutation
+# is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
 def palindromePermutation(s):
     # make permutations of s
     for i in range(len(s)):
@@ -73,6 +76,48 @@ def palindromePermutation(s):
                 return True
     return False
 
+# There are three types of edits that can be performed on strings: insert a character,
+# remove a character, or replace a character. Given two strings, write a function to check if they are
+# one edit (or zero edits) away.
+def oneAway(s1, s2):
+    word1 = "" # does not change
+    word2 = "" # the one we need to alter
+    count = 0
+    print(s1, s2)
+
+    # initialize
+    if s1 == s2:
+        return count
+    elif len(s1) > len(s2):
+        word1 = s1
+        word2 = s2
+    else:
+        word1 = s2
+        word2 = s1
+    i = 0
+    j = 0
+    while (i < len(word2) and j < len(word1)):
+        # compare letters
+        print(word1[j], word2[i])
+        print(j, i)
+        if word1[j] != word2[i]:
+            count += 1
+            if (len(s1) == len(s2)):
+                i += 1
+        else:
+            i += 1
+        j += 1
+        
+        print(count)
+        if count > 1:
+            return False
+
+    # if not seen all of word1
+    if (j < len(word1)):
+        count += len(word2) - len(word1)
+    print(count)
+    return count <= 1
+    
 if __name__ == '__main__':
     print("Testing isUnique...")
     assert(isUnique("abcd") == True)
@@ -88,12 +133,20 @@ if __name__ == '__main__':
     assert(checkPermutation("cab", "bato") == False)
     print("Passed")
 
-    print("Testing URLify")
+    print("Testing URLify...")
     assert(URLify("hey you are", 11) == "hey%20you%20are")
     print("Passed")
 
-    print("Testing palindromePermutations")
+    print("Testing palindromePermutations...")
     print(palindromePermutation("toot"))
     assert(palindromePermutation("toot") == True)
     assert(palindromePermutation("act") == False)
     print("Passed")
+
+    print("Testing oneAway...")
+    assert(oneAway("pale", "ple") == True)
+    assert(oneAway("pales", "pale") == True)
+    assert(oneAway("pale", "bale") == True)
+    assert(oneAway("pale", "bake") == False)
+    print("Passed")
+
