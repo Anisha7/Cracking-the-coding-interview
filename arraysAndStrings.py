@@ -203,7 +203,6 @@ def rotateString(s1, s2):
         s2 = s2[1:] + s2[0]
         
     return isSubstring(s1,s2)
-        
 
 
 if __name__ == '__main__':
