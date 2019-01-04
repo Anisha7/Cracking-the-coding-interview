@@ -173,6 +173,39 @@ def zeroMatrix(matrix):
     del zeroPositions
     return matrix
 
+# checks if s2 is a substring of s1
+def isSubstring(s1, s2):
+    i = 0
+    j = 0
+    while (i < len(s1) and j < len(s2)):
+        if (s1[i] == s2[j]):
+            i += 1
+            j += 1
+        else:
+            j = 0
+            i += 1
+    
+    if (j == len(s2)):
+        return True
+    return False
+
+# Assume you have a method isSubstring which checks if one word is a substring
+# of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 
+# using only one call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
+def rotateString(s1, s2):
+    if (len(s1) != len(s2)):
+        return False
+
+    for i in range(len(s1)):
+        print(s1, s2, i)
+        if s2 == s1:
+            return True
+        s2 = s2[1:] + s2[0]
+        
+    return isSubstring(s1,s2)
+        
+
+
 if __name__ == '__main__':
     print("Testing isUnique...")
     assert(isUnique("abcd") == True)
@@ -219,6 +252,11 @@ if __name__ == '__main__':
     print("Testing zeroMatrix...")
     assert(zeroMatrix([[0,1],[2,3]]) == [[0,0],[0,3]])
     assert(zeroMatrix([[0,1, 2],[3,4,5],[6,0,8]]) == [[0,0,0],[0,0,5],[0,0,0]])
+    print("Passed")
+
+    print("Testing rotateString...")
+    # print(rotateString("erbottlewat", "waterbottle"))
+    assert(rotateString("erbottlewat", "waterbottle") == True)
     print("Passed")
 
 
