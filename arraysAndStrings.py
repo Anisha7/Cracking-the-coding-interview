@@ -135,6 +135,22 @@ def compressString(s):
 
 # Given an image represented by an NxN matrix, where each pixel in the image is 4
 # bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+def rotateMatrix(matrix):
+    # initialize resulting matrix
+    newMatrix = []
+    for i in range(len(matrix)):
+        newMatrix.append([])
+        # for j in range(len(matrix)):
+        #     newMatrix[i].append(0)
+    
+    # append to new matrix
+    
+    # start from the last row, up the rows on one column
+    # add those items to first row
+    for c in range(len(matrix)):
+        for r in range(len(matrix)-1, -1, -1):
+            newMatrix[c].append(matrix[r][c])
+    return newMatrix
 
 if __name__ == '__main__':
     print("Testing isUnique...")
@@ -173,6 +189,10 @@ if __name__ == '__main__':
     assert(compressString("aa") == "a2")
     assert(compressString("") == "")
     assert(compressString("abc") == "abc")
+    print("Passed")
+
+    print("Testing rotateMatrix")
+    assert(rotateMatrix([[0,1,2],[3,4,5],[6,7,8]]) == [[6,3,0], [7,4,1], [8,5,2]])
     print("Passed")
 
 
