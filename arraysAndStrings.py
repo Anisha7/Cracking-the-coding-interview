@@ -36,7 +36,7 @@ def checkPermutation(s1, s2):
     # passed all tests, it is a permutation
     return True
 
-# Write a method to replace all spaces in a string with '%20'.
+# replaces all spaces in a string with '%20'.
 def URLify(s,n):
     newS = ""
     for i in range(n):
@@ -46,7 +46,7 @@ def URLify(s,n):
             newS += s[i]
     return newS
 
-# make all combinations with string s and character c
+# makes all combinations with string s and character c
 def makePermutations(s, c):
     words = []
     for i in range(len(s)):
@@ -54,14 +54,14 @@ def makePermutations(s, c):
         words.append(word)
     return words
 
-# check if s is the same when reversed
+# checks if s is the same when reversed
 def isPalindrome(s):
     reversedS = ""
     for i in range(len(s)):
         reversedS += s[len(s) - i - 1]
     return reversedS == s
 
-# Given a string, write a function to check if it is a permutation of a palindrome.
+# Given a string, checks if it is a permutation of a palindrome.
 # A palindrome is a word or phrase that is the same forwards and backwards. A permutation
 # is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
 def palindromePermutation(s):
@@ -75,7 +75,7 @@ def palindromePermutation(s):
     return False
 
 # There are three types of edits that can be performed on strings: insert a character,
-# remove a character, or replace a character. Given two strings, write a function to check if they are
+# remove a character, or replace a character. Given two strings, checks if they are
 # one edit (or zero edits) away.
 def oneAway(s1, s2):
     word1 = "" # does not change
