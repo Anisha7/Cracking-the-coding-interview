@@ -74,6 +74,36 @@ def partition(L, x):
         prev = curr
     
     return L
+    
+# helper function for sumLists
+# converts linked list digits to number
+def listToNum(L):
+    mult = 10*L.size # multiplier for each digit
+    sums = 0
+    curr = L.head
+    while (curr != None and curr != L.tail.next):
+        sums += curr.data * mult
+        mult = mult/10
+    return sums
+
+# Given two numbers represented by a linked list, where each node contains a single
+# digit. The digits are stored in reverse order, such that the 1 's digit is at 
+# the head of the list. 
+# This function adds the two numbers and returns the sum as a linked list.
+def sumLists(L1, L2):
+    result = []
+    # convert
+    num1 = listToNum(L1)
+    num2 = listToNum(L2)
+    sums = str(num1 + num2)
+
+    # add to list first to last digit
+    while (len(sums) != 0):
+        value = sums[0]
+        result.append(int(value))
+        sums = sums[1:]
+    
+    return modules.linkedList.LinkedList(sums)
         
 
 if __name__ == '__main__':
