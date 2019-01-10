@@ -13,7 +13,68 @@ def removeDups(L):
     return newList
 
 # finds the kth to last element of a singly linked list.
+def findElements(L, k):
+    n = L.size # length of list
+    count = 0
+    curr = L.head
+    # find kth element
+    while (curr != None and count < k):
+        curr = curr.next
+        count += 1
 
+    # add elems to the list
+    elems = []
+    while (curr != None and count <= n):
+        elems.append(curr.data)
+        curr = curr.next
+        count += 1
+    
+    return elems
+
+# deletes a node in the middle (i.e., any node but
+# the first and last node, not necessarily the exact middle) of a singly linked list,
+#  given only access to that node.
+def delMiddleNode(node):
+    # swap data of node and node->next
+    # delete node->next
+    node.data = node.next.data
+    node.next = node.next.next
+    return
+
+# partition a linked list around a value x, such that all nodes less than x come
+# before all nodes greater than or equal to x. If x is contained within the list, 
+# the values of x only need to be after the elements less than x (see below). 
+# The partition element x can appear anywhere in the
+# "right partition"; it does not need to appear between the left and right partitions.
+def partition(L, x):
+    curr = L.head
+    found = False
+    prev = None
+
+    while (curr != None and curr != L.tail.next):
+        if (found == True):
+            # check if value is less than x
+            # if it is, move it to the front of the list
+            if (curr.data < x):
+                # move node to the front
+                node = Node(curr.data)
+                node.next = L.head
+                L.head = = node
+                # delete node from other location
+                if (curr.next != None):
+                    delMiddleNode(curr)
+                # if last node
+                else:
+                    prev.next = None
+                    curr = None
+                    break
+        if (curr.data = x):
+            found = True
+        # track prev node in case we need to delete the last node
+        prev = curr
+    
+    return L
+        
 
 if __name__ == '__main__':
     # testing removeDups
@@ -44,5 +105,11 @@ if __name__ == '__main__':
     print(mm.items())
     assert(mm.items().sort() == ['A', 'B', 'C', 'D', 'F'].sort())
     print("PASSED")
+
+    # testing find Elements
+    print('Testing findElements...')
+    assert(findElements(ll, 1).sort() == ['B', 'C'].sort())
+    assert(findElements(mm, 3).sort() == ['D', 'F'].sort())
+    print('Passed')
 
 
