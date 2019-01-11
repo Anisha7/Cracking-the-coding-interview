@@ -104,6 +104,8 @@ def sumLists(L1, L2):
         sums = sums[1:]
     
     return modules.linkedList.LinkedList(sums)
+
+def palindrome()
         
 
 if __name__ == '__main__':
