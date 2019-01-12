@@ -105,8 +105,55 @@ def sumLists(L1, L2):
     
     return modules.linkedList.LinkedList(sums)
 
-def palindrome()
-        
+def listToString(L):
+    curr = L.head
+    s = ""
+    while curr != None and curr != L.tail.next:
+        s += curr.data
+        curr = curr.next
+
+    return s
+
+def reverseString(s):
+    reversedS = ""
+
+    for i in range(len(s)-1, -1, -1):
+        reversedS += s[i]
+    
+    return reversedS
+
+# checks if a linked list is a palindrome.
+def isPalindrome(L):
+    s = listToString(L)
+    reversedS = reverseString(s)
+    return s == reversedS
+
+#  Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting
+# node. Note that the intersection is defined based on reference, not value. That is, if the kth
+# node of the first linked list is the exact same node (by reference) as the jth node of the second
+# linked list, then they are intersecting.
+def intersection(L1, L2):
+    # node.isSameNode(other node)
+    curr1 = L1.head
+    while (curr1 != None and curr1 != L1.tail.next):
+        curr2 = L2.head
+        while (curr2 != None and curr2 != L2.tail.next):
+            if (curr1.isSameNode(curr2)):
+                return curr1
+    return None
+
+#  Given a circular linked list, implement an algorithm that returns the node at the
+# beginning of the loop.
+def loopDetection(L):
+    curr = L.head
+    seen = set()
+    while (curr != None):
+        data = curr.data
+        if data in seen:
+            return curr
+        seen.add(data)
+    return curr
+
 
 if __name__ == '__main__':
     # testing removeDups
