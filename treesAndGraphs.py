@@ -99,5 +99,25 @@ def validateBST(T):
     # right is smaller than root
     if (T.right != None and T.right.data < T.data):
         return False
-        
+
     return validateBST(T.left) and validateBST(T.right)
+
+# 6. Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a
+# binary search tree. You may assume that each node has a link to its parent.
+# if there is no right node:
+    # return parent node
+# else:
+    # go to right node
+    # while left is not none, go left
+    # return it
+def successor(n):
+    if (n == None):
+        return None
+    if (n.right == None):
+        return n.parent
+    # else
+    temp = n.right
+    while (temp.left != None):
+        temp = temp.left
+    return temp
+    
