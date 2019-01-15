@@ -23,7 +23,7 @@ class Node(object):
         """Initialize this node with the given data."""
         self.data = data
         self.next = None
-        self.min = None
+        self.min = 0
 
     def __repr__(self):
         """Return a string representation of this node."""
@@ -104,6 +104,7 @@ class Queue(object):
     def __init__(self, items = None):
         self.stack1 = Stack()
         self.stack2 = Stack()
+        self.size = 0
         
         if items is not None:
             for item in items:
@@ -111,8 +112,10 @@ class Queue(object):
 
     def enqueue(self, data):
         self.stack1.push(data)
+        self.size += 1
 
     def dequeue(self):
+        self.size -= 1
         if (self.stack2.size <= 0):
             while (self.stack2.size > 0):
                 self.stack2.push(self.stack2.pop())
@@ -125,6 +128,9 @@ class Queue(object):
                 self.stack2.push(self.stack2.pop())
         
         return self.stack2.peek()
+
+    def isEmpty(self):
+        return self.size == 0
 
 # 5. Write a program to sort a stack such that the smallest items are on the top. You can use
 # an additional temporary stack, but you may not copy the elements into any other data structure
