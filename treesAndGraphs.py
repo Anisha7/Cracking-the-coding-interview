@@ -120,4 +120,34 @@ def successor(n):
     while (temp.left != None):
         temp = temp.left
     return temp
+
+# 7. You are given a list of projects and a list of dependencies (which is a list of pairs of
+# projects, where the second project is dependent on the first project). All of a project's dependencies
+# must be built before the project is. Find a build order that will allow the projects to be built. If there
+# is no valid build order, return an error.
+# EXAMPLE
+# Input:
+# projects: a, b, c, d, e, f
+# dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
+# Output: f, e, a, b, d, c
+def buildOrder(projects, dependencies):
+    T = minimalTree(projects)
     
+
+    # if elem is not before the second elem: swap them until valid solution is reached
+    # a, b, c, d, e, f
+    # a, f, c, d, e, b
+    # a, f, c, b, e, d
+    # f, a, c, b, e, d
+    # f, a, d, b, e, c
+    # f, a, b, d, e, c
+    
+
+    # while solution is not valid
+        # loop through dependencies (d in dependencies)
+            # search tree for d[0] and keep a look out for d[1]
+                # if d[1] is found before d[0]
+                    # swap d[1] with d[0]
+
+
+
