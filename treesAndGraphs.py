@@ -71,4 +71,33 @@ def listOfDepths(T, result = [], depth = 0):
     result = listOfDepths(T.left, result, depth + 1)
     result = listOfDepths(T.right, result, depth + 1)
     return result
+
+# 4. Implement a function to check if a binary tree is balanced. For the purposes of
+# this question, a balanced tree is defined to be a tree such that the heights of the 
+# two subtrees of any node never differ by more than one.
+def getHeight(T, height = 0):
+    if (T == None):
+        return height
     
+    left = getHeight(T.left, height + 1)
+    right = getHeight(T.right, height + 1)
+    return max(left, right)
+
+def checkBalanced(T):
+    left = getHeight(T.left)
+    right = getHeight(T.right)
+    
+    return abs(right - left) <= 1
+
+# 5. Implement a function to check if a binary tree is a binary search tree.
+def validateBST(T):
+    if (T == None):
+        return True
+    # left is greater than root
+    if (T.left != None and T.left.data > T.data):
+        return False
+    # right is smaller than root
+    if (T.right != None and T.right.data < T.data):
+        return False
+        
+    return validateBST(T.left) and validateBST(T.right)
