@@ -121,6 +121,14 @@ def successor(n):
         temp = temp.left
     return temp
 
+
+class graphNode(object):
+    def __init__(self, data, child=None):
+        """Initialize this node with the given data."""
+        self.data = data
+        self.child = child 
+        self.visited = False
+
 # 7. You are given a list of projects and a list of dependencies (which is a list of pairs of
 # projects, where the second project is dependent on the first project). All of a project's dependencies
 # must be built before the project is. Find a build order that will allow the projects to be built. If there
@@ -130,24 +138,51 @@ def successor(n):
 # projects: a, b, c, d, e, f
 # dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
 # Output: f, e, a, b, d, c
+def findNode(nodes, data):
+    for i in range(len(nodes)):
+        if (nodes[i].data == data):
+            return nodes[i]
+    return None
+
+def search(root, n, path =[]):
+    if (path == None):
+        return None
+    if (root == None):
+        if (len(path) == n and n == len(set(path))):
+            return path 
+        return None;
+
+    path.append(root.data)
+    root.visited = True
+    path = search(root.child, path)
+    root.visited = False
+
+    # check if solution is found
+    if (len(path) == n and n == len(set(path))):
+        return path
+    return None
+
 def buildOrder(projects, dependencies):
-    T = minimalTree(projects)
+    # set up dict for dependencies
+    dep = dict()
+    for d in dependencies:
+        dep[d[0]] = d[1]
+
+    # set up graph
+    nodes = []
+    for proj in projects:
+        nodes.append(graphNode(proj))
     
+    for i in range(len(nodes)):
+        if (dep.get(nodes[i].data)):
+            child = findNode(nodes, dep[nodes[i].data])
+            nodes[i].child = child
 
-    # if elem is not before the second elem: swap them until valid solution is reached
-    # a, b, c, d, e, f
-    # a, f, c, d, e, b
-    # a, f, c, b, e, d
-    # f, a, c, b, e, d
-    # f, a, d, b, e, c
-    # f, a, b, d, e, c
+    # find a path
+    for node in nodes:
+        result = search(node)
+        if (result != None):
+            return result
+    return None   
     
-
-    # while solution is not valid
-        # loop through dependencies (d in dependencies)
-            # search tree for d[0] and keep a look out for d[1]
-                # if d[1] is found before d[0]
-                    # swap d[1] with d[0]
-
-
 

@@ -204,6 +204,18 @@ def rotateString(s1, s2):
         
     return isSubstring(s1,s2)
 
+def longestStringPalindrome(s1):
+    if (s1 == ""):
+        return ""
+    if (isPalindrome(s1)):
+        return s1
+    
+    result1 = longestStringPalindrome(s1[1:])
+    result2 = longestStringPalindrome(s1[:-1])
+
+    if (len(result1) > len(result2)):
+        return result1
+    return result2
 
 if __name__ == '__main__':
     print("Testing isUnique...")
@@ -256,6 +268,12 @@ if __name__ == '__main__':
     print("Testing rotateString...")
     # print(rotateString("erbottlewat", "waterbottle"))
     assert(rotateString("erbottlewat", "waterbottle") == True)
+    print("Passed")
+
+    print("Testing longestStringPalindrome...")
+    assert(longestStringPalindrome("racecarbee") == "racecar")
+    assert(longestStringPalindrome("bobracecar") == "racecar")
+    assert(longestStringPalindrome("eeobraecac") == "cac")
     print("Passed")
 
 
