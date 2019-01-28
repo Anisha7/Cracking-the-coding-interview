@@ -121,14 +121,6 @@ def successor(n):
         temp = temp.left
     return temp
 
-
-class graphNode(object):
-    def __init__(self, data, child=None):
-        """Initialize this node with the given data."""
-        self.data = data
-        self.child = child 
-        self.visited = False
-
 # 7. You are given a list of projects and a list of dependencies (which is a list of pairs of
 # projects, where the second project is dependent on the first project). All of a project's dependencies
 # must be built before the project is. Find a build order that will allow the projects to be built. If there
@@ -138,6 +130,13 @@ class graphNode(object):
 # projects: a, b, c, d, e, f
 # dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
 # Output: f, e, a, b, d, c
+class graphNode(object):
+    def __init__(self, data, child=None):
+        """Initialize this node with the given data."""
+        self.data = data
+        self.child = child 
+        self.visited = False
+
 def findNode(nodes, data):
     for i in range(len(nodes)):
         if (nodes[i].data == data):
@@ -186,3 +185,7 @@ def buildOrder(projects, dependencies):
     return None   
     
 
+# 8. Design an algorithm and write code to find the first common ancestor
+# of two nodes in a binary tree. Avoid storing additional nodes in a data structure. 
+# NOTE: This is not necessarily a binary search tree.
+def firstCommonAncestor():
