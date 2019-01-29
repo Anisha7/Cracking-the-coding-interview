@@ -1,5 +1,6 @@
 from stacksAndQueues import Queue
 import modules.linkedList
+import random
 
 class Node(object):
     
@@ -188,4 +189,56 @@ def buildOrder(projects, dependencies):
 # 8. Design an algorithm and write code to find the first common ancestor
 # of two nodes in a binary tree. Avoid storing additional nodes in a data structure. 
 # NOTE: This is not necessarily a binary search tree.
-def firstCommonAncestor():
+def firstCommonAncestor(node1, node2):
+    
+
+
+# 9. BST Sequences: A binary search tree was created by traversing through an array from left to right
+# and inserting each element. Given a binary search tree with distinct elements, print all possible
+# arrays that could have led to this tree.
+
+def bstSequences():
+
+
+# 10. Check Subtree: Tl and T2 are two very large binary trees, with Tl much bigger than T2. 
+# Create an algorithm to determine if T2 is a subtree of Tl. A tree T2 is a subtree of Tl 
+# if there exists a node n in Tl such that the subtree of n is identical to T2. That is, if 
+# you cut off the tree at node n, the two trees would be identical.
+def checkSubtree(T1, T2):
+    # find node in T1 that matches T2
+    # check if all left and right nodes from that node are identical in both trees
+
+
+# 11. Random Node: You are implementing a binary tree class from scratch which, in addition to
+# insert, find, and delete, has a method getRandomNode() which returns a random node
+# from the tree. All nodes should be equally likely to be chosen. Design and implement an algorithm
+# for getRandomNode, and explain how you would implement the rest of the methods.
+def length(T,):
+    if (T == None):
+        return 0
+    return 1 + length(T.left) + length(T.right)
+
+def randomNode(T):
+    n=random.randInt(length(T))
+    return getRandomNode(T,n)
+
+def getRandomNode(T, n):
+    if (T == null):
+        return None
+    if (n == 0):
+        return T.data
+
+    l = getRandomNode(T.left, n-1)
+    r = getRandomNode(T.right, n-2)
+    if (l != None):
+        return l
+    if (r != None):
+        return r
+    return T.data
+
+
+# 12. Paths with Sum: You are given a binary tree in which each node contains an integer value (which
+# might be positive or negative). Design an algorithm to count the number of paths that sum to a
+# given value. The path does not need to start or end at the root or a leaf, but it must go downwards
+# (traveling only from parent nodes to child nodes).
+def pathsWithSum():
