@@ -65,4 +65,14 @@ def robotGridHelper(G, rows, cols, pos=(0,0), result=[]):
 # array A.
 # FOLLOW UP
 # What if the values are not distinct?
+
+def magicIndex(A, i=0):
+    if (i >= len(A)):
+        return None
+    if (A[i] == i):
+        return i
+    return magicIndex(A, i+1)
+
+# 4. Power Set: Write a method to return all subsets of a set.
+def powerSet(s):
     
